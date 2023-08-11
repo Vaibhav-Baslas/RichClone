@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Payment Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="index.html">My Website</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="plans.html">Payment Plans</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="registration.html">Register</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="login.html">Log in</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <h2>Payment Details</h2>
+        <?php
+        session_start();
+        if (isset($_SESSION["user"])) {
+            $user = $_SESSION["user"];
+            if (isset($_SESSION["subscription"])) {
+                $subscription = $_SESSION["subscription"];
+                echo "<p>You're currently subscribed to the <strong>{$subscription}</strong> plan.</p>";
+                echo '<a href="cancel_subscription.php" class="btn btn-danger">Cancel Subscription</a>';
+            } else {
+                echo "<p>You're not currently subscribed to any plan.</p>";
+            }
+        } else {
+            echo "<p>Please <a href='login.html'>log in</a> to view your payment details.</p>";
+        }
+        ?>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
